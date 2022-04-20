@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class QuintrixSpringApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(QuintrixSpringApplication.class, args);
-	}
+  // runs application
+  public static void main(String[] args) {
+    SpringApplication.run(QuintrixSpringApplication.class, args);
+  }
 
 }

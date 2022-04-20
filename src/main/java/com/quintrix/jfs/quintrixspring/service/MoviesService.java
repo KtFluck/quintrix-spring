@@ -13,6 +13,7 @@ import com.quintrix.jfs.quintrixspring.models.Movies;
 @RestController
 public class MoviesService {
 
+  // creates an array list with movie values
   public List<Movies> moviesList = new ArrayList<>(Arrays.asList(
 
       // Movies(String title, String rating, String runTime, String showTime)
@@ -23,7 +24,7 @@ public class MoviesService {
 
   ));
 
-
+  // gets movie with title specified or returns all movies
   @RequestMapping(method = RequestMethod.GET, value = "/movies")
   public List<Movies> getMovies(@RequestParam(name = "title", required = false) String title) {
 
@@ -37,12 +38,13 @@ public class MoviesService {
   }
 
 
-
+  // gets movies with specified rating
   public Movies getMoviesRating(String rating) {
     return moviesList.stream().filter(movies -> movies.getRating().equals(rating)).findFirst()
         .get();
   }
 
+  // add movie to list
   public void addMovies(Movies movie) {
     moviesList.add(movie);
   }

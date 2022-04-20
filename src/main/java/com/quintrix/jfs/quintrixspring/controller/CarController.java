@@ -1,4 +1,4 @@
-package com.quintrix.jfs.quintrixspring.controler;
+package com.quintrix.jfs.quintrixspring.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,13 @@ import com.quintrix.jfs.quintrixspring.service.CarService;
 @RestController
 public class CarController {
 
+  // connects controller to service layer
   @Autowired
   private CarService carService;
 
+  // puts all cars in a list
   @RequestMapping("/cars")
-  public List<Car> all_Car() {
+  public List<Car> allCar() {
     return carService.carsList;
 
   }

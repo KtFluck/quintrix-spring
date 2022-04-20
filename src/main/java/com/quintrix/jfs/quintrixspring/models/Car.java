@@ -2,6 +2,7 @@ package com.quintrix.jfs.quintrixspring.models;
 
 public class Car {
 
+  // variable decelerations
   Long id;
   String make;
   String model;
