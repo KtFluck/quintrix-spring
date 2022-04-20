@@ -6,10 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.quintrix.jfs.quintrixspring.models.Car;
 
 @Service
@@ -23,20 +19,16 @@ public class CarService {
 
 
   // gets car with specified make or returns all cars
-  @RequestMapping(method = RequestMethod.GET, value = "/cars")
-  List<Car> getCars(@RequestParam(name = "make", required = false) String make) {
-
+  public List<Car> getCars(String make) {
     if (make != null) {
       return carsList.stream().filter(c -> c.getMake().equals(make)).collect(Collectors.toList());
-
     } else {
       return carsList;
     }
   }
 
   // gets cars with specified id or returns nothing
-  @RequestMapping(method = RequestMethod.GET, value = "/cars/{id}")
-  Car getCarDetails(@PathVariable("id") Long id) {
+  public Car getCarDetailsById(Long id) {
 
     Optional<Car> car =
         carsList.stream().filter(c -> c.getId().longValue() == id.longValue()).findAny();
@@ -46,6 +38,12 @@ public class CarService {
     } else {
       return null;
     }
+  }
+
+  // method to add car
+  public Car addCar(Car car) {
+    carsList.add(car);
+    return car;
   }
 
 }
