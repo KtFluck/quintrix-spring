@@ -5,11 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.quintrix.jfs.quintrixspring.models.Car;
+import com.quintrix.jfs.quintrixspring.repository.CarRepository;
 
 @Service
 public class CarService {
+
+  @Autowired
+  CarRepository carResository;
 
   // creates an array list of cars
   public List<Car> carsList = new ArrayList<>(
@@ -30,8 +35,11 @@ public class CarService {
   // gets cars with specified id or returns nothing
   public Car getCarDetailsById(Long id) {
 
-    Optional<Car> car =
-        carsList.stream().filter(c -> c.getId().longValue() == id.longValue()).findAny();
+    // Optional<Car> car =
+    // carsList.stream().filter(c -> c.getId().longValue() == id.longValue()).findAny();
+
+    // for this to work you must have @Autowired carResository
+    Optional<Car> car = carResository.findById(1L);
 
     if (car.isPresent()) {
       return car.get();

@@ -1,12 +1,17 @@
 package com.quintrix.jfs.quintrixspring.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Car {
 
   // variable decelerations
-  Long id;
-  String make;
-  String model;
-  Integer year;
+  @Id
+  private Long id;
+  private String make;
+  private String model;
+  private Integer year;
 
   public Car() {};
 
