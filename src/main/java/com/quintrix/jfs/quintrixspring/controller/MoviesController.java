@@ -6,21 +6,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.quintrix.jfs.quintrixspring.models.Movies;
-import com.quintrix.jfs.quintrixspring.service.MoviesService;
+import com.quintrix.jfs.quintrixspring.entity.Movies;
+import com.quintrix.jfs.quintrixspring.service.MovieService;
 
 @RestController
 public class MoviesController {
 
   // connects controller to service layer
   @Autowired
-  private MoviesService moviesService;
+  MovieService moviesService;
 
-  // gets all movies in list
-  @RequestMapping("/movies")
-  public List<Movies> allMovies() {
-    return moviesService.moviesList;
+  @RequestMapping(method = RequestMethod.GET, value = "/movies")
+  public List<Movies> getMovies(@RequestParam(name = "title", required = false) String title) {
+    return moviesService.getMovies(title);
   }
 
   // gets all movies with queried rating

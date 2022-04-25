@@ -1,6 +1,7 @@
 package com.quintrix.jfs.quintrixspring.models;
 
-public class Movies {
+
+public class ClientMovies {
 
   // Variable deceleration
   private String title;
@@ -8,10 +9,10 @@ public class Movies {
   private String runTime;
   private String showTime;
 
-  public Movies() {};
+  public ClientMovies() {};
 
   // constructor using fields
-  public Movies(String title, String rating, String runTime, String showTime) {
+  public ClientMovies(String title, String rating, String runTime, String showTime) {
     super();
     this.title = title;
     this.rating = rating;
@@ -51,6 +52,5 @@ public class Movies {
   public void setShowTime(String showTime) {
     this.showTime = showTime;
   }
-
 
 }

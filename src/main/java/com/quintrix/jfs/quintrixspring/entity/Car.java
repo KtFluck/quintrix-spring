@@ -1,4 +1,4 @@
-package com.quintrix.jfs.quintrixspring.models;
+package com.quintrix.jfs.quintrixspring.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
