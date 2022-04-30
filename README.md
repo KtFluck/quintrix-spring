@@ -13,5 +13,7 @@ Create Spring Boot App from start.spring.io,
 		h) Create @Bean for RestTemplate with a timeout
 		i) Use restTemplate to make an external REST API call and integrate with our API response
 		j) Use PathVariables, QueryParameters, RequestBody. HttpHeaders in the client call using restTemplate 
+		k)REST API exception - @ContollerAdvisor
+		l)Logging - slf4j/Logback - Levels by packages
 
 
