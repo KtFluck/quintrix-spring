@@ -5,18 +5,29 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.quintrix.jfs.quintrixspring.entity.Car;
+import com.quintrix.jfs.quintrixspring.exception.CarNotFoundException;
 import com.quintrix.jfs.quintrixspring.models.ClientCar;
 import com.quintrix.jfs.quintrixspring.models.GetCarsResponse;
+import com.quintrix.jfs.quintrixspring.models.agent.Agent;
 import com.quintrix.jfs.quintrixspring.repository.CarRepository;
+import com.quintrix.jfs.quintrixspring.restservice.AgentService;
 
 @Service
 public class CarServiceImpl implements CarService {
 
+  private static final Logger logger = LoggerFactory.getLogger(CarServiceImpl.class);
+
   @Autowired
   CarRepository carResository;
+
+  @Autowired
+  AgentService agentService;
+
 
   // creates an array list of cars
   public List<Car> carsList = new ArrayList<>(
@@ -41,8 +52,14 @@ public class CarServiceImpl implements CarService {
     // }
     getCarsResponse.setAvailableWarranty("2 year warranty");
 
+
+    List<Agent> agentsList = agentService.getAgentList();
+
+    getCarsResponse.setAgentsList(agentsList);
     return getCarsResponse;
   }
+
+
 
   // gets cars with specified id or returns nothing
   @Override
@@ -52,12 +69,13 @@ public class CarServiceImpl implements CarService {
     // carsList.stream().filter(c -> c.getId().longValue() == id.longValue()).findAny();
 
     // for this to work you must have @Autowired carResository
-    Optional<Car> car = carResository.findById(1L);
+    Optional<Car> car = carResository.findById(id);
 
     if (car.isPresent()) {
       return car.get();
     } else {
-      return null;
+      logger.error("Customer is calling with id = {}", id);
+      throw new CarNotFoundException("Invalid id", "Please use a different Id");
     }
   }
 

@@ -1,6 +1,5 @@
 package com.quintrix.jfs.quintrixspring.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.quintrix.jfs.quintrixspring.entity.Movies;
+import com.quintrix.jfs.quintrixspring.models.GetMoviesResponse;
 import com.quintrix.jfs.quintrixspring.service.MovieService;
 
 @RestController
@@ -19,7 +19,7 @@ public class MoviesController {
   MovieService moviesService;
 
   @RequestMapping(method = RequestMethod.GET, value = "/movies")
-  public List<Movies> getMovies(@RequestParam(name = "title", required = false) String title) {
+  public GetMoviesResponse getMovies(@RequestParam(name = "title", required = false) String title) {
     return moviesService.getMovies(title);
   }
 

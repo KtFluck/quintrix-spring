@@ -9,4 +9,14 @@ spring:
     username: root
     password: Jeffn00n
     
-    
+agentService:
+  getUrl: https://gorest.co.in/public/v2/users
+  
+logging:
+  level:
+    org.springframework: ERROR
+    com.quintrix: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    file: "%d %p %c{1.} [%t] %m%n"
+  file: app.log

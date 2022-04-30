@@ -1,6 +1,7 @@
 package com.quintrix.jfs.quintrixspring.models;
 
 import java.util.List;
+import com.quintrix.jfs.quintrixspring.models.agent.Agent;
 
 public class GetCarsResponse {
 
@@ -8,6 +9,8 @@ public class GetCarsResponse {
 
   // creates list of cars
   List<ClientCar> availableCarsList;
+
+  List<Agent> agentsList;
 
   // getters and setters
   public String getAvailableWarranty() {
@@ -24,6 +27,14 @@ public class GetCarsResponse {
 
   public void setAvailableCarsList(List<ClientCar> carsList) {
     this.availableCarsList = carsList;
+  }
+
+  public List<Agent> getAgentsList() {
+    return agentsList;
+  }
+
+  public void setAgentsList(List<Agent> agentsList) {
+    this.agentsList = agentsList;
   }
 
 
