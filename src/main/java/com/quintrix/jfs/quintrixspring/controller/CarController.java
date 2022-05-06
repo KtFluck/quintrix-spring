@@ -1,5 +1,6 @@
 package com.quintrix.jfs.quintrixspring.controller;
 
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.quintrix.jfs.quintrixspring.entity.Car;
 import com.quintrix.jfs.quintrixspring.models.GetCarsResponse;
+import com.quintrix.jfs.quintrixspring.models.agent.Agent;
+import com.quintrix.jfs.quintrixspring.restservice.AgentService;
 import com.quintrix.jfs.quintrixspring.service.CarService;
 
 @RestController
@@ -24,6 +27,8 @@ public class CarController {
   // connects controller to service layer
   @Autowired
   CarService carService;
+  @Autowired
+  AgentService agentService;
 
   @RequestMapping(method = RequestMethod.GET, value = "/cars")
   GetCarsResponse getCars(@RequestParam(name = "make", required = false) String make) {
@@ -49,6 +54,17 @@ public class CarController {
 
   }
 
+  @RequestMapping(method = RequestMethod.GET, value = "/agents")
+  List<Agent> getAgentsList() {
+
+    return agentService.getAgentList();
+  }
+
+  @RequestMapping(method = RequestMethod.POST, value = "/agents")
+  List<Agent> addAgentsList(@RequestBody Agent agent) {
+
+    return agentService.addAgentList(agent);
+  }
 }
 
 

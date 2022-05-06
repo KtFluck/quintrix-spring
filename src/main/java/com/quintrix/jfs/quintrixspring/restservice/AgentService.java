@@ -5,6 +5,8 @@ import com.quintrix.jfs.quintrixspring.models.agent.Agent;
 
 public interface AgentService {
 
-  List<Agent> getAgentList();
+  public List<Agent> getAgentList();
+
+  public List<Agent> addAgentList(Agent agent);
 
 }

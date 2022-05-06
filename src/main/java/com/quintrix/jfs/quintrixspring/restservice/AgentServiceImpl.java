@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +34,27 @@ public class AgentServiceImpl implements AgentService {
     }
     return agentsList;
   }
+
+  @Override
+  public List<Agent> addAgentList(Agent agent) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.set("Authorization",
+        "Bearer ee583768b8bc0d4e8ea40afd85078131d35b86602c9379398875dab35f8a0611");
+
+    HttpEntity<Agent> requestBody = new HttpEntity<>(agent, headers);
+
+    ResponseEntity<String> agentsListResponseEntity =
+        restTemplate.exchange(agentServiceGetUrl, HttpMethod.POST, requestBody, String.class);
+
+    System.out.println(agentsListResponseEntity);
+
+    // if (agentsListResponseEntity.getStatusCode() == HttpStatus.OK) {
+    // agentsList = agentsListResponseEntity.getBody();
+    // }
+    List<Agent> agentList = getAgentList();
+    agentList.add(0, agent);
+    return agentList;
+  }
+
 
 }
