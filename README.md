@@ -15,5 +15,6 @@ Create Spring Boot App from start.spring.io,
 		j) Use PathVariables, QueryParameters, RequestBody. HttpHeaders in the client call using restTemplate 
 		k)REST API exception - @ContollerAdvisor
 		l)Logging - slf4j/Logback - Levels by packages
+		m)JUnit tests
 
 
