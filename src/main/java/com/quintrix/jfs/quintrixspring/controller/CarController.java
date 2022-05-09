@@ -53,10 +53,14 @@ public class CarController {
   }
 
   @RequestMapping(method = RequestMethod.DELETE, value = "/cars{id}")
-  public boolean deleteById(@PathVariable("id") Long id) {
+  public Car deleteById(@PathVariable("id") Long id) {
 
     logger.debug("Request: Called getCarsDetails Controller {}", id);
-    return carService.deleteCarById(id);
+    if (carService.deleteCarById(id)) {
+      return new Car();
+    } else {
+      return null;
+    }
   }
 
   public CarService getCarService() {
