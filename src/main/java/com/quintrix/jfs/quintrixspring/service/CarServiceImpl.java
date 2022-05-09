@@ -13,7 +13,6 @@ import com.quintrix.jfs.quintrixspring.entity.Car;
 import com.quintrix.jfs.quintrixspring.exception.CarNotFoundException;
 import com.quintrix.jfs.quintrixspring.models.ClientCar;
 import com.quintrix.jfs.quintrixspring.models.GetCarsResponse;
-import com.quintrix.jfs.quintrixspring.models.agent.Agent;
 import com.quintrix.jfs.quintrixspring.repository.CarRepository;
 import com.quintrix.jfs.quintrixspring.restservice.AgentService;
 
@@ -27,6 +26,9 @@ public class CarServiceImpl implements CarService {
 
   @Autowired
   AgentService agentService;
+
+  // @Autowired
+  // GetAgentsResponse getAgentsResponse;
 
 
   // creates an array list of cars
@@ -53,9 +55,9 @@ public class CarServiceImpl implements CarService {
     getCarsResponse.setAvailableWarranty("2 year warranty");
 
 
-    List<Agent> agentsList = agentService.getAgentList();
+    // List<Agent> agentsList = agentService.getAgentList();
 
-    getCarsResponse.setAgentsList(agentsList);
+    // getAgentsResponse.setAgentsList(agentsList);
     return getCarsResponse;
   }
 
@@ -83,7 +85,16 @@ public class CarServiceImpl implements CarService {
   @Override
   public Car addCar(Car car) {
     carsList.add(car);
+
     return car;
+  }
+
+
+
+  @Override
+  public boolean deleteCarById(Long id) {
+    // TODO Auto-generated method stub
+    return false;
   }
 
 }

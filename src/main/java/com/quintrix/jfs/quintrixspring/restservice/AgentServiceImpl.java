@@ -26,6 +26,12 @@ public class AgentServiceImpl implements AgentService {
   public List<Agent> getAgentList() {
     List<Agent> agentsList = null;
 
+    HttpHeaders headers = new HttpHeaders();
+    headers.set("Authorization",
+        "Bearer ee583768b8bc0d4e8ea40afd85078131d35b86602c9379398875dab35f8a0611");
+    // HttpEntity<Agent> requestBody = new HttpEntity<>(headers);
+
+
     ResponseEntity<List<Agent>> agentsListResponseEntity = restTemplate.exchange(agentServiceGetUrl,
         HttpMethod.GET, null, new ParameterizedTypeReference<List<Agent>>() {});
 
@@ -48,13 +54,25 @@ public class AgentServiceImpl implements AgentService {
 
     System.out.println(agentsListResponseEntity);
 
-    // if (agentsListResponseEntity.getStatusCode() == HttpStatus.OK) {
-    // agentsList = agentsListResponseEntity.getBody();
-    // }
     List<Agent> agentList = getAgentList();
     agentList.add(0, agent);
     return agentList;
   }
+  /*
+   * @Override public List<Agent> getAgentById(Long id) {
+   * 
+   * ResponseEntity<List<Agent>> agentsListResponseEntity =
+   * restTemplate.exchange(agentServiceGetUrl, HttpMethod.GET, id, new
+   * ParameterizedTypeReference<List<Agent>>(id) {});
+   * 
+   * if (agentsListResponseEntity.getStatusCode() == HttpStatus.OK) { agentList =
+   * agentsListResponseEntity.getAgent(id); } return getAgentById(id); }
+   */
 
+  @Override
+  public List<Agent> getAgentById(Long id) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
 }
