@@ -7,7 +7,7 @@ public interface AgentService {
 
   public List<Agent> addAgentList(Agent agent);
 
-  public List<Agent> getAgentById(Long id);
+  public Agent getAgentById(Long id);
 
   // GetAgentsResponse getAgent(String name);
 
